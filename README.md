@@ -44,8 +44,10 @@
 
 Open your browser and navigate to `http://127.0.0.1:8000/` to see the application in action. `user:Abhay / password: admin`
 email used for forgot password: 
-`Email: nepalemart.host@gmail.com
-Password: nepalemart@123`
+```bash
+Email: nepalemart.host@gmail.com
+Password: nepalemart@123
+```
 ## Acknowledgements
 
 Special thanks to the open-source community and the libraries used in this project and my friends to help me build this project.
