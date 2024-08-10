@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_tag %}
+{% block content %}
+<!-- page-banner-area-start -->
+        <div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="page-banner-content text-center">
+                            <h4 class="breadcrumb-title">Your Cart</h4>
+                            <div class="breadcrumb-two">
+                                <nav>
+                                   <nav class="breadcrumb-trail breadcrumbs">
+                                      <ul class="breadcrumb-menu">
+                                         <li class="breadcrumb-trail">
+                                            <a href="index.html"><span>Home</span></a>
+                                         </li>
+                                         <li class="trail-item">
+                                            <span>Cart</span>
+                                         </li>
+                                      </ul>
+                                   </nav>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page-banner-area-end -->
+
+        <!-- cart-area-start -->
+        <section class="cart-area pt-120 pb-120">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                        <form action="">
+                           <div class="table-content table-responsive">
+                              <table class="table">
+                                    <thead>
+                                       <tr>
+                                          <th class="product-thumbnail">Images</th>
+                                          <th class="cart-product-name">Product</th>
+                                          <th class="product-price">Unit Price</th>
+                                          <th class="product-quantity">Quantity</th>
+                                          <th class="product-subtotal">Total</th>
+                                          <th class="product-remove">Remove</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key,value in request.session.cart.items %}
+                                       <tr id="id{{value.id}}">
+                                          <td class="product-thumbnail"><a href=""><img src="{{value.featured_image}}" alt=""></a></td>
+                                          <td class="product-name"><a href="">{{value.product_name}}</a></td>
+                                          <td class="product-price"><span class="amount">रु{{value.price}}</span></td>
+                                          <td class="product-quantity w-25">
+
+                                              <div class="row">
+                                                  <div class="col-4">
+                                                      <a href="{% url 'item_decrement' value.product_id %}#id{{value.id}}" class="text-center">-</a>
+                                                  </div>
+                                                  <div class="col-4">
+                                                      <input type="text" value="{{value.quantity}}" class="form-control border-1 text-center">
+                                                  </div>
+                                                  <div class="col-4">
+                                                      <a href="{% url 'item_increment' value.product_id %}#id{{value.id}}" class="text-center">+</a>
+                                                  </div>
+                                              </div>
+
+                                          </td>
+                                          <td class="product-subtotal"><span class="amount">रु {{ value.price|multiply:value.quantity }}</span></td>
+                                          <td class="product-remove"><a href="{% url 'item_clear' key %}"><i class="fa fa-times"></i></a></td>
+                                       </tr>
+                                    {% endfor %}
+                                    </tbody>
+                              </table>
+                           </div>
+                           <div class="row">
+                              <div class="col-12">
+                                    <div class="coupon-all">
+                                        <form method="get">
+                                            <div class="coupon">
+                                                {% if valid_coupon %}
+                                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                    <strong>{{coupon.code}}&NonBreakingSpace;</strong>
+                                                    {{valid_coupon}}
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                {% elif invalid_coupon %}
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    {{invalid_coupon}}
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                {% endif %}
+
+<!--                                                <input id="coupon_code" class="input-text" name="coupon_code" placeholder="Coupon code" type="text">-->
+<!--                                                <button class="tp-btn-h1"  type="submit">Apply coupon</button>-->
+                                            </div>
+                                        </form>
+                                       <div class="coupon2">
+                                          <a href="{% url 'cart_clear' %}" class="tp-btn-h1" name="clear_cart" type="submit">Clear cart</a>
+                                       </div>
+                                    </div>
+                              </div>
+                           </div>
+                           <div class="row justify-content-end">
+                              <div class="col-md-5">
+                                    <div class="cart-page-total">
+                                       <h2>Cart totals</h2>
+                                       <ul class="mb-20">
+<!--                                           {% if valid_coupon %}-->
+<!--                                                <li class="text-success">Coupon Code Applied <span>{{coupon.discount}}%</span></li>-->
+<!--                                                <li>Item total <span id="total">${{cart_total_amount}}</span></li>-->
+<!--                                           {% else %}-->
+                                          <li>Item total <span>रु{{cart_total_amount}}</span></li>
+                                           {% endif %}
+                                           <li>Tax <span>रु{{tax}}</span></li>
+                                           <li>Packing Cost <span>रु{{packing_cost}}</span></li>
+
+
+
+                                           {% if cart_total_amount > 500 %}
+                                               <li class="text-success">Delivery Charge <span class="text-success">Free</span></li>
+                                               <li class="text-danger">All Total <span class="text-danger" id="final_total1"> रु{{cart_total_amount|add:packing_cost|add:tax }}</span></li>
+                                           {% else %}
+
+                                               <li>Delivery Charge <span>80</span></li>
+                                               <li class="text-danger">All Total <span class="text-danger" id="final_total">रु{{cart_total_amount|add:packing_cost|add:tax|add:80}}</span></li>
+                                           {% endif %}
+
+                                       </ul>
+                                       <a class="tp-btn-h1" href="{% url 'checkout' %}">Proceed to checkout</a>
+                                    </div>
+                              </div>
+                           </div>
+                        </form>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- cart-area-end -->
+
+        <script>
+            var item_amounts = {{cart_total_amount}}
+            var coupon_discount = {{coupon.discount}}
+            var dis_amount = ( coupon_discount /100 ) * item_amounts
+            var cal = item_amounts - dis_amount
+            var tax = {{tax}}
+            var packing_cost = {{packing_cost}}
+            document.getElementById("total").innerHTML = "रु" + " " + cal.toFixed()
+            var f_cal = (tax+packing_cost+80)+(item_amounts - dis_amount)
+            document.getElementById("final_total").innerHTML = "रु" + " " + f_cal.toFixed()
+            var f_cal1 = (tax+packing_cost)+(item_amounts - dis_amount)
+            document.getElementById("final_total1").innerHTML = "रु" + " " + f_cal.toFixed()
+        </script>
+{% endblock %}

@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load product_tags %}
+{% load cart_tag %}
+{% block content %}
+<!-- page-banner-area-start -->
+        <div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="page-banner-content text-center">
+                            <h4 class="breadcrumb-title">Checkout</h4>
+                            <div class="breadcrumb-two">
+                                <nav>
+                                   <nav class="breadcrumb-trail breadcrumbs">
+                                      <ul class="breadcrumb-menu">
+                                         <li class="breadcrumb-trail">
+                                            <a href="index.html"><span>Home</span></a>
+                                         </li>
+                                         <li class="trail-item">
+                                            <span>Checkout</span>
+                                         </li>
+                                      </ul>
+                                   </nav>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page-banner-area-end -->
+
+        <!-- coupon-area-start -->
+        <section class="coupon-area pt-120 pb-30">
+            <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+        </section>
+        <!-- coupon-area-end -->
+
+        <!-- checkout-area-start -->
+        <section class="checkout-area pb-85">
+            <div class="container">
+                <form action="{% url 'placeorder' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkbox-form">
+                                <h3>Billing Details</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>First Name <span class="required">*</span></label>
+                                            <input type="text" placeholder="" value="{{user.first_name}}" name="first_name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Last Name <span class="required">*</span></label>
+                                            <input type="text" placeholder="" value="{{user.last_name}}" name="last_name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Full Address <span class="required">*</span></label>
+                                            <input type="text" placeholder="Street address" name="address">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                    </div>
+
+<!--                                    <div class="col-md-12">-->
+<!--                                        <div class="checkout-form-list">-->
+<!--                                            <label>City <span class="required">*</span></label>-->
+<!--                                            <input type="text" placeholder="City" name="city">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>State<span class="required">*</span></label>
+                                            <input type="text" placeholder="State" name="state">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Postcode / Zip <span class="required">*</span></label>
+                                            <input type="text" placeholder="Postcode / Zip" name="postcode">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Email Address <span class="required">*</span></label>
+                                            <input type="email" placeholder="" value="{{user.email}}" name="email" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Phone number <span class="required">*</span></label>
+                                            <input type="text" placeholder="Phone number" value="+977" name="phone_number">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                    </div>
+                                </div>
+                                <div class="different-address">
+                                    <div class="ship-different-title">
+
+                                    </div>
+
+                                    <div class="order-notes">
+                                        <div class="checkout-form-list">
+                                            <label>Order Notes</label>
+                                            <textarea id="checkout-mess" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery." name="order_notes"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="your-order mb-30 ">
+                                <h3>Your order</h3>
+                                <div class="your-order-table table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-total">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+<!--                                            <tr class="cart-subtotal">-->
+<!--                                                <th class="text-success">Coupon Code Applied</th>-->
+<!--                                                <td class="text-success"><span class="amount">{{coupon.discount}}%</span></td>-->
+<!--                                            </tr>-->
+                                        {% for key,value in request.session.cart.items %}
+                                            <tr class="cart_item">
+                                                <td class="product-name" width="800px">
+                                                    <input type="text" value="{{value.product_name}}" name="product_name" readonly> <strong class="product-quantity"> <input type="text" value="{{value.price}}" name="price" readonly> × <input type="text" value="{{value.quantity}}" name="quantity" readonly></strong>
+                                                </td>
+                                                <td class="product-total">
+                                                    <span class="amount">${{value.price|multiply:value.quantity}}</span>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="cart-subtotal">
+                                                <th>Cart Subtotal</th>
+                                                <td><span class="amount">${{cart_total_amount}}</span></td>
+                                            </tr>
+                                            <tr class="cart-subtotal">
+                                                <th>Tax and Packing Cost</th>
+                                                <td><span class="amount">${{tax_and_packing_cost}}</span></td>
+                                            </tr>
+
+
+
+                                            <tr class="shipping">
+                                                {% if cart_total_amount > 500 %}
+                                                <th class="text-success">Shipping</th>
+                                                <td>
+                                                    <ul>
+                                                        <li>
+                                                            <label class="text-success">
+                                                                Free Shipping
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                {% else %}
+                                                <th>Shipping</th>
+                                                <td>
+                                                    <ul>
+                                                        <li>
+                                                            <label>
+                                                               $&nbsp;80
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr class="order-total">
+                                                <th class="text-danger">Order Total</th>
+                                                {% if cart_total_amount > 500 %}
+                                                <td>
+                                                    <strong><span class="amount" id="amt">$<input type="text" value="{{cart_total_amount|add:tax_and_packing_cost}}" name="amt" readonly></span></strong>
+                                                </td>
+                                                {% else %}
+                                                <td>
+                                                    <strong><span class="amount">$<input type="text" value="{{cart_total_amount|add:80|add:tax_and_packing_cost}}" name="amt" readonly></span></strong>
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+<!--                                <script>-->
+<!--                                    var item_amounts = {{cart_total_amount}}-->
+<!--                                    var coupon_discount = {{coupon.discount}}-->
+<!--                                    var dis_amount = ( coupon_discount /100 ) * item_amounts-->
+<!--                                    var cal = item_amounts - dis_amount-->
+<!--                                    var tax = {{tax}}-->
+<!--                                    var packing_cost = {{packing_cost}}-->
+<!--                                    document.getElementById("total").innerHTML = "$" + " " + cal.toFixed()-->
+<!--                                    var f_cal = (tax+packing_cost+80)+(item_amounts - dis_amount)-->
+<!--                                    document.getElementById("final_total").innerHTML = "$" + " " + f_cal.toFixed()-->
+<!--                                    var f_cal1 = (tax+packing_cost)+(item_amounts - dis_amount)-->
+<!--                                    document.getElementById("final_total1").innerHTML = "$" + " " + f_cal.toFixed()-->
+<!--                                </script>-->
+                                <div class="payment-method">
+                                    <div class="accordion" id="checkoutAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="checkoutOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bankOne" aria-expanded="true" aria-controls="bankOne">
+                                            Direct Bank Transfer
+                                            </button>
+                                        </h2>
+                                        <div id="bankOne" class="accordion-collapse collapse show" aria-labelledby="checkoutOne" data-bs-parent="#checkoutAccordion">
+                                            <div class="accordion-body">
+                                             <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="paypalThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paypal" aria-expanded="false" aria-controls="paypal">
+                                            Electronic Payment
+                                            </button>
+                                        </h2>
+                                        <div id="paypal" class="accordion-collapse collapse" aria-labelledby="paypalThree" data-bs-parent="#checkoutAccordion">
+                                            <div class="accordion-body">
+                                                <p>Pay via esewa,khalti,imepay; you can pay with your e-pay </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="order-button-payment mt-20">
+                                    <button type="submit"  class="tp-btn-h1">Place Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+{% endblock %}
