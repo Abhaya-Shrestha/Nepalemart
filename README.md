@@ -42,7 +42,7 @@
     python manage.py runserver
     ```
 
-Open your browser and navigate to `http://127.0.0.1:8000/` to see the application in action.
+Open your browser and navigate to `http://127.0.0.1:8000/` to see the application in action. `user:Abhay / password: admin`
 
 ## Acknowledgements
 
