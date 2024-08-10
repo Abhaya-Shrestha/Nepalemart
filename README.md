@@ -13,13 +13,11 @@ Key Features
 **Installation**
 1.	**Clone the Repository:**
     git clone https://github.com/DeadPool0087/Nepalemart.git
-    cd Nepalemart/ecommerce/
+    cd Nepalemart
 2.	**Set Up a Virtual Environment:**
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    python -m venv venv #On mac `source venv/bin/activate`  # On Windows use `venv\Scripts\activate`
 3.	**Install Dependencies:**
       pip install -r requirements.txt
-4.	**Run Migrations:**
-	    python manage.py migrate
-5.	**Start the Development Server:**
+  	cd ecommerce
+4.	**Start the Development Server:**
       python manage.py runserver
