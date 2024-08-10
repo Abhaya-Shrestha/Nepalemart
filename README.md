@@ -42,7 +42,7 @@
     python manage.py runserver
     ```
 5. **Update cart.py**
-    `goto to : C:\Users\[YourUserName(eg:Abhay)]\AppData\Local\Programs\Python\Python312\Lib\site-packages\cart `
+    `goto to : C:\Users\[YourUserName(eg:Abhay)]\AppData\Local\Programs\Python\Python312\Lib\site-packages\cart\cart.py `
     ```bash
     from decimal import Decimal
     from django.conf import settings
