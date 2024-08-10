@@ -14,3 +14,16 @@ Key Features
 7.	Cloudinary: For managing and optimizing media files.
 8.	Stripe: For secure payment processing.
 
+**Installation**
+1.	**Clone the Repository:**
+    git clone https://github.com/DeadPool0087/Nepalemart.git
+    cd Nepalemart/ecommerce/
+2.	**Set Up a Virtual Environment:**
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+3.	**Install Dependencies:**
+      pip install -r requirements.txt
+4.	**Run Migrations:**
+	    python manage.py migrate
+5.	**Start the Development Server:**
+      python manage.py runserver
