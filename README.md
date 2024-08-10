@@ -125,9 +125,13 @@
         self.session[settings.CART_SESSION_ID] = {}
         self.session.modified = True
     ```
-Open your browser and navigate to `http://127.0.0.1:8000/` to see the application in action. `user:Abhay / password: admin`
+Open your browser and navigate to `http://127.0.0.1:8000/` to see the application in action. `user: Abhay / password: admin`
 email used for forgot password: 
 
+6. **Create Super account**
+    ```bash
+    python manage.py createsuperuser
+    ```
 ## Acknowledgements
 
 Special thanks to the open-source community and the libraries used in this project and my friends to help me build this project.
