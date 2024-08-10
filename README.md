@@ -1,7 +1,7 @@
 # Nepalemart
 **Nepalemart** is a comprehensive e-commerce platform developed as a college project for the Bachelor of Information Technology (BIT) course. This project aims to provide a robust and user-friendly online shopping experience tailored for users in Nepal. It integrates various features to enhance user engagement and streamline the purchasing process.
 Key Features
-1.	**Product Catalog: **A dynamic catalog of products with detailed descriptions, images, and prices.
+1.	**Product Catalog:** A dynamic catalog of products with detailed descriptions, images, and prices.
 2.	**Shopping Cart:** An intuitive shopping cart system that allows users to add, remove, and modify items.
 3.	**Checkout Process:** A secure and straightforward checkout process with multiple payment options.
 4.	**User Accounts:** User account management with registration, login, and profile management features.
