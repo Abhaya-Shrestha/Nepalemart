@@ -42,7 +42,7 @@
                                     <span class="count">{{request.session.cart|length}}</span>
                                     <span class="text">
                                     <span class="sub">Your Cart:</span>
-                                    ${{cart_total_amount}} </span>
+                                    रु {{cart_total_amount}} </span>
                                 </a>
                                 <div class="cart">
                                     <div class="cart__mini">
@@ -65,7 +65,7 @@
                                                         <div class="cart__details">
                                                             <h6><a href="product-details.html"> {{value.product_name}} </a></h6>
                                                             <div class="cart__price">
-                                                                <span>${{value.price}} x Qty: {{value.quantity}}</span>
+                                                                <span>रु {{value.price}} x Qty: {{value.quantity}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -78,12 +78,12 @@
                                             <li>
                                                 <div class="cart__sub d-flex justify-content-between align-items-center">
                                                     <h6>Subtotal</h6>
-                                                    <span class="cart__sub-total">${{cart_total_amount}}</span>
+                                                    <span class="cart__sub-total">रु {{cart_total_amount}}</span>
                                                 </div>
                                             </li>
                                             <li>
                                                 <a href="{% url 'cart_detail' %}" class="wc-cart mb-10">View cart</a>
-                                                <a href="checkout.html" class="wc-checkout">Checkout</a>
+                                                <a href="{% url 'checkout' %}" class="wc-checkout">Checkout</a>
                                             </li>
                                         </ul>
                                     </div>
