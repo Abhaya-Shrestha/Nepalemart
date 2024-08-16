@@ -7,7 +7,7 @@ Follow these steps to set up the project on your local machine.
 Open your terminal and run the following command to clone the repository:
 
 ```bash
-> git clone https://github.com/Abhaya-Shrestha/Nepalemart
+git clone https://github.com/Abhaya-Shrestha/Nepalemart
 ```
 
 **Step 2: Navigate to the Project Directory**
