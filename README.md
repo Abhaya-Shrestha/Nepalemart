@@ -1,6 +1,6 @@
 
 # Nepalemart
-This is the repository for Nepalemart, an e-commerce project.
+This is the repository for an e-commerce project.
 ## Getting Started
 Follow these steps to set up the project on your local machine.
 **Step 1: Clone the Repository**
