@@ -3,6 +3,7 @@
 This is the repository for an e-commerce project.
 ## Getting Started
 Follow these steps to set up the project on your local machine.
+#
 **Step 1: Clone the Repository**
 Open your terminal and run the following command to clone the repository:
 
