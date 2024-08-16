@@ -1,4 +1,3 @@
-
 # Nepalemart
 This is the repository for an e-commerce project.
 ## Getting Started
