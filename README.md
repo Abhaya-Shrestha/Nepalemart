@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```
 **Step 4: Update Code in `cart.py`**
 
-Make the necessary changes to the `C:\Users\Abhay\AppData\Local\Programs\Python\Python312\Lib\site-packages\cart\cart.py` file. Replace the code with:
+Make the necessary changes to the `C:\Users\[UserName]\AppData\Local\Programs\Python\Python312\Lib\site-packages\cart\cart.py` file. Replace the code with:
 
 ```python
 from decimal import Decimal
