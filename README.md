@@ -1,5 +1,5 @@
 # Nepalemart
-This is the repository for an e-commerce project.
+This is a college project.
 ## Getting Started
 Follow these steps to set up the project on your local machine.
 #
